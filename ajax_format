@@ -1,0 +1,15 @@
+$.ajax({
+          type: 'post',
+          url: '',
+          dataType: 'json',
+          data: {
+
+          },
+          success: function (response) {
+            
+          }
+        });
+
+$('#btn').click(function ()){
+
+});

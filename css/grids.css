@@ -1,0 +1,161 @@
+/* common CSS */
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border: 2px solid black;
+  padding: 30px;
+  margin: 0 auto;
+}
+
+img {
+  max-width: 50%;
+}
+
+.cards {
+  box-shadow: 0 0 10px #474168;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.center {
+  text-align: center;
+}
+
+/* header */
+
+header {
+  background-color: #474168;
+  padding: 20px 0 0;
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+
+  /* position: sticky; */
+  /* top: 0; */
+}
+
+header h2 {
+  margin: 0px 0 0;
+}
+
+.logo {
+  max-width: 100px;
+}
+
+/* navigation */
+header ul {
+  list-style: none;
+  margin: 0;
+}
+
+header ul li {
+  display: inline-block;
+}
+
+header nav {
+  border-top: 2px solid white;
+  margin-top: 20px;
+  /* padding-top: 20px; */
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 15px 40px;
+  display: inline-block;
+}
+
+header nav a:hover,
+header nav a.current {
+  background-color: white;
+  color: #474168;
+  border-radius: 15px;
+}
+
+header nav ul li ul {
+  display: none;
+  background-color: #474168;
+  border-radius: 15px;
+  z-index: 8000;
+}
+
+header nav ul li:hover ul {
+  display: block;
+}
+
+header ul li {
+  position: relative;
+}
+
+header ul ul {
+  position: absolute;
+  background-color: #474168;
+  padding: 0;
+  border: 2px solid white;
+  box-shadow: 0 0 10px #474168;
+}
+
+header ul ul li {
+  display: block;
+  width: 200px;
+}
+
+header ul ul li a {
+  display: block;
+  border-radius: 15px;
+}
+
+.center1 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
+.p {
+  text-align: justify;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 205%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: inherit;
+}
+
+/* footer */
+
+/* Grids CSS */
+.grid {
+  display: grid;
+  grid-row-gap: 0;
+  grid-column-gap: 30px;
+  margin: 30px 0;
+}
+
+.grid1 {
+  grid-template-columns: 1fr;
+}
+
+.grid2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.grid3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.grid4 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.login {
+  display: flex;
+}
