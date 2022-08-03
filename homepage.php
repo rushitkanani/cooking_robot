@@ -25,10 +25,7 @@ else{
 
 ?>
     <main>
-        <section class="grid grid1">
-            <h2 class="center">Let's Cook Delicious Food Together</h2>
-            <div class="container"> 
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -36,21 +33,25 @@ else{
       <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <img src="https://wallpapercave.com/wp/wp3724325.jpg" style="width: 750px; height: 480px;">
-      </div>
+    <div class="center-text">
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="https://vistapointe.net/images/stake-13.jpg" style="width: 100%; height: 700px;">
+        </div>
 
-      <div class="item">
-        <img src="https://wallpapercave.com/wp/wp7846006.jpg" alt="Chicago" style="width: 750px; height: 480px;" >
-      </div>
-    
-      <div class="item">
-        <img src="https://images.creativemarket.com/0.1.0/ps/5829524/1820/1213/m1/fpnw/wm1/awu82uoqwx3lgrsj2omlbzhzouszk713n45h7c4cpor2my2zlpqyb34pt2ogzhep-.jpg?1549379772&s=beb2804ea962fb49e6242654b23c6cd5" alt="New york"  style="width: 750px; height: 480px;" >
-      </div>
+        <div class="item">
+          <img src="https://wallpapercave.com/wp/wp7846006.jpg" alt="Chicago" style="width: 100%; height: 700px;">
+        </div>
 
-      
+        <div class="item">
+          <img
+            src="https://images.creativemarket.com/0.1.0/ps/5829524/1820/1213/m1/fpnw/wm1/awu82uoqwx3lgrsj2omlbzhzouszk713n45h7c4cpor2my2zlpqyb34pt2ogzhep-.jpg?1549379772&s=beb2804ea962fb49e6242654b23c6cd5"
+            alt="New york" style="width: 100%; height: 700px;">
+        </div>
+
+
+      </div>
+      <div class="centerrr">Lets Cook Delicious Food</div>
     </div>
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -66,8 +67,6 @@ else{
 
 </body>
 </html>
-
-        </section>
         <section class="grid grid2 fullImage">    
         </section>
        <h2 align="center">Recipe List</h2>
