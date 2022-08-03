@@ -22,7 +22,9 @@
         </button>
         <strong class="d-block d-sm-inline-block-force">Well done!</strong> Your Profile data has been successfully updated!!!
 </div>
-
+<div style="text-align: center;">
+  <h4>My Profile</h4>
+</div>
 <div class="form-layout form-layout-1" style="border: none;">
             <div class="row mg-b-25">
               <div class="col-lg-4">
@@ -48,9 +50,12 @@
             </div><!-- row -->
 
             <div class="form-layout-footer">
-              <button class="btn btn-info" id="update">UPDATE</button>
+              <button class="btn btn-info btn-dark" id="update" style='width:100px;margin:0 50%;position:relative;left:-50px;'>UPDATE</button>
             </div><!-- form-layout-footer -->
           </div>
+          <div class="form-layout-footer">
+              <button class="btn btn-info btn-dark" style='margin:0 50%;position:relative;left: -95px;px;'><a href="ingredients.php"; style="color: white";>Add New Ingredient</a></button>
+            </div>
           </div>
       
 </body>
@@ -101,4 +106,3 @@
     }
 
 </script>
-
