@@ -1,35 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="css/bootstrap.css">
+    <div class="rcorners">
+        
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Ingredients</title>
 </head>
 <body>
-<form form method="post" action="add_ingredients.php" enctype="multipart/form-data" id="myform">
-    <label for = "ing_name">Ingredient Name</label>
-    <input type="text" id="ingrident_name" name="ingrident_name"  required><br>
-    <label for = "cooking_time">Cooking Time</labelTime</label>
-    <input type="text" id="cooking_time" name="cooking_time"  required ><br>
-    <label for = "cooking_temp">Cooking Temperature</labelTime</label>
-    <input type="text" id="cooking_temp" name="cooking_temp" required ><br>
-    <label for = "calories">Calories</label>
-    <input type="text" id="calories" name="calories" required ><br>
-    <label for = "file">Uplaoad Image</label>
-    <input input type="file" id="image" name="image" accept="image/*"/><br>
-    <input type="submit"  value="Add Ingredients" id="upload" name="upload">
-   
+<div class="row mg-t-80">
+          <div class="col-xl-6" style="background-color: #fff;">
+            <div class="form-layout form-layout-4" >
+              <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Add Ingredient to Recepie</h6>
+              <p class="mg-b-30 tx-gray-600">Ingredient details of a custom receipe.</p>
+              <form method="post" action="add_ingredients.php" enctype="multipart/form-data" id="myform">
+              <div class="row">
+                <label class="col-sm-4 form-control-label">Ingredient Name: <span class="tx-danger">*</span></label>
+                <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                  <input type="text" class="form-control" placeholder="Enter Ingredient Name" id="ingrident_name" name="ingrident_name" required>
+                </div>
+              </div><!-- row -->
+              <div class="row mg-t-20">
+                <label class="col-sm-4 form-control-label">Cooking Time: <span class="tx-danger">*</span></label>
+                <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                  <input type="text" class="form-control" placeholder="Enter Cooking Time" id="cooking_time" name="cooking_time"  required>
+                </div>
+              </div>
+              <div class="row mg-t-20">
+                <label class="col-sm-4 form-control-label">Cooking Temperature: <span class="tx-danger">*</span></label>
+                <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                  <input type="text" class="form-control" placeholder="Enter Cooking Temperature" id="cooking_temp" name="cooking_temp"  required>
+                </div>
+              </div>
+              <div class="row mg-t-20">
+                <label class="col-sm-4 form-control-label">Calories: <span class="tx-danger">*</span></label>
+                <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                <input type="text" class="form-control" placeholder="Enter Calories" id="calories" name="calories" required>
+                </div>
+              </div>
+              <div class="row mg-t-20">
+                <label class="col-sm-4 form-control-label">Upload Image: <span class="tx-danger">*</span></label>
+                <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                <input type="file" class="form-control" id="image" name="image" accept="image/*"/>
+                </div>
+              </div>
+              
+              <div class="form-layout-footer mg-t-30">
+                <button class="btn btn-info btn-dark active" id="upload" name="upload">Add Ingredient</button>
+              </div><!-- form-layout-footer -->
+            <!-- form-layout -->
+            </div>
+          </div><!-- col-6 -->
 </form>
-
-<form form method="post"  >
-    <label for = "utensil">Utensil Name</label>
-    <input type="text" id="utensil" name="utensil"  required><br>
-    <input type="button" id="add_utensil" name="add_utensil" value="Add Utensil">
+          <div class="col-xl-6 mg-t-20 mg-xl-t-0" style="background-color: #fff;">
+            <div class="form-layout form-layout-4">
+              <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Add Utensils</h6>
+              <p class="mg-b-30 tx-gray-600">Add your utensils here</p>
+              <form>
+              <div class="row">
+                <label class="col-sm-4 form-control-label"><span class="tx-danger">*</span> Utensil Name:</label>
+                <div class="col-sm-8 mg-t-10 mg-sm-t-0">
+                <input type="text" id="utensil" name="utensil"   required>
+</div>
+                <div class="form-layout-footer mg-t-30" style="padding-left: 35%;">
+                <button class="btn btn-info btn-dark active" id="add_utensil" name="add_utensil">Add Utensil</button>
+                
+              </div>
+                </div>
+              </div><!-- row --><!-- row -->
+            </div><!-- form-layout -->
+          </div><!-- col-6 -->
 </form>
-
-
-<script src="ajax.js"></script>
+        <script src="ajax.js"></script>
 <script type = "text/javascript">
   console.log("hello")
   $(function () {
@@ -55,5 +98,3 @@
 </script>
 </body>
 </html>
-
-
