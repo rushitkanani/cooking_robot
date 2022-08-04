@@ -19,8 +19,12 @@ echo "error";
 else{
 $sql = "INSERT INTO users_table (email, first_name, last_name,pass_word) VALUES ('$email','$firstName', '$lastName', '$pass_wordd')";
 $res = mysqli_query($conn,$sql);  
+if($res){
+echo "<script>confirm('Account Created Successfully');
+window.location.assign('login.php');
+</script>";
+}
 
-header("Location:login.php");
 }
 
 ?>
