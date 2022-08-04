@@ -1,6 +1,12 @@
 <?php
 session_start();
-require_once('header.php');
+if(!isset($_SESSION['login'])){
+header("Location:homepage.php"); 
+}
+else{
+  require_once('header.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
