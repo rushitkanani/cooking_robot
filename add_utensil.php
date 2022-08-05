@@ -1,21 +1,26 @@
 <?php 
-require_once 'connection.php';
-if (isset($_POST['utensil'])){
-    $utensil = $_POST["utensil"];
-   
-    $query = "INSERT INTO `utensils`(`utensils_name`) VALUES ('".$utensil."')";
-    echo $query;
+require_once('connection.php');
 
-    $result = mysqli_query($conn, $query);
-if ($result > 0) {
-    echo "success";
-}
-else {
-echo mysqli_error($conn);
+if(isset($_GET['add_utensil']))
+{
+    
+    $utensil = strtoupper($_GET['utensil']);
 
-}
-}
+    $query = "INSERT INTO `utensils`( `utensils_name`) VALUES ('$utensil')";
+    $query_run = mysqli_query($conn, $query);
 
+    if($query_run)
+    {
+        echo "<script> confirm('utensil Added Successfully');
+        window.location.assign('ingredients.php');
+        </script>";
+        
+    }
+    else{
+        echo mysqli_error($conn);
+        echo "failed";
+    }
+}
 ?>
 
 
