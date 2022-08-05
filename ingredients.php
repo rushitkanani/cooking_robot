@@ -82,29 +82,5 @@ else{
             </div><!-- form-layout -->
           </div><!-- col-6 -->
 </form>
-        <!-- <script src="ajax.js"></script>
-<script type = "text/javascript">
-  console.log("hello")
-  $(function () {
-
-    $('#add_utensil').click(function () {
-        console.log("clicked!!");
-        var utensil  = $('#utensil').val();
-        $.ajax({
-          type: 'POST',
-          url: 'add_utensil.php',
-          dataType: 'json',
-          data: {
-            "utensil" : utensil,
-          },
-          success: function (response) {
-            console.log(response);
-            
-          }
-        })
-      })
-      });
-
-</script> -->
 </body>
 </html>
