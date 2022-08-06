@@ -1,0 +1,137 @@
+<link rel="stylesheet" href="css/bracket.css">
+<script src="jquery.js"></script>
+<script src="popper.js"></script>
+<script src="jquery-ui.js"></script>
+<script src="bootstrap.js"></script>
+<script src="select2.min.js"></script>
+<link rel="stylesheet" href="select2.min.css">
+
+<?php
+require_once("connection.php");
+?>
+
+<form method="post" id="form" action="#">
+    <input type="text" id="receipe_name" name="receipe_name" placeholder="Name">
+    <input type="number" id="cooking_time" name="cooking_time" placeholder="Time">
+    <input type="number" id="person" name="person" placeholder="Person">
+    <input type="file" name="rec_image">
+    <table>
+        <?php
+        $q = "SELECT id,ingredient_table.ingredient_name,ingredient_table.ingredient_calories, tmp_receipe_ingrident.portion FROM `tmp_receipe_ingrident` 
+                    JOIN `ingredient_table` ON ingredient_table.ing_id=tmp_receipe_ingrident.ing_id WHERE tmp_receipe_ingrident.user_id=1;";
+        $r = mysqli_query($conn, $q);
+        if (mysqli_num_rows($r) > 0) {
+            echo '<td>Ingriendent_name</td><td>Ingriendent_Calories</td><td>Portion</td>';
+        }
+        while ($row = mysqli_fetch_assoc($r)) {
+            echo '<tr>';
+            echo '<td>' . $row['ingredient_name'] . '</td>';
+            echo '<td>' . $row['ingredient_calories'] . '</td>';
+            echo '<td>' . $row['portion'] . '</td>';
+            echo '<td><button type="button" onclick="remove_item(' . $row['id'] . ')" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>';
+            echo '</tr>';
+        }
+        ?>
+    </table>
+    <div id="add_ing_block" style="visibility: hidden">
+        <form id="ing_form" action="#">
+            <select class="select2" type="text" id="ing_name" placeholder="name">
+                <option>Choose one</option>
+                <?php
+                $r = mysqli_query($conn, "SELECT `ing_id`,`ingredient_name` FROM `ingredient_table`");
+                while ($row = mysqli_fetch_assoc($r)) {
+                    echo '<option value="' . $row['ing_id'] . '">' . $row['ingredient_name'] . '</option>';
+                }
+                ?>
+            </select>
+                <input type="text" id="ing_calories" placeholder="calories" readonly>
+                <input type="text" id="portion" name="portion" placeholder="Portion">
+                <button value="add" id="add_ing">ADD</button>
+            </form>
+    </div>
+    <button id="add_ingriendent" name="add_ingriendent">Add Ingrident</button>
+    <input type="submit" name="submit" value="Submit">
+</form>
+
+<script>
+    $(function() {
+        'use strict';
+
+        $('#form').submit(function(ev) {
+            ev.preventDefault();
+        });
+
+        $('#ing_form').submit(function(ev) {
+            ev.preventDefault();
+        });
+
+        $('#ing_name').select2({
+            dir: "ltr"
+        });
+
+        $('#add_ingriendent').on('click', function() {
+            $('#add_ing_block').css('visibility', 'visible');
+        });
+
+        $('#add_ing').on('click', function() {
+            $.ajax({
+                type: 'POST',
+                url: 'ingridient_data.php',
+                dataType: 'json',
+                data: {
+                    "ing_id": $("#ing_name").val(),
+                    "calories": $('#ing_calories').val(),
+                    "portion": $('#portion').val(),
+                    "user_id": 1,
+                    "method_name": "add_ingredient",
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response['status'] == "success") {
+                        location.reload();
+                    } else if (response['status'] == "Failed") {
+                        console.log(response);
+                        alert('Ingredient already exists');
+                    }
+                }
+            })
+        });
+
+        $("#ing_name").change(function() {
+            var ing_id = $("#ing_name").val();
+            $.ajax({
+                type: 'POST',
+                url: 'ingridient_data.php',
+                dataType: 'json',
+                data: {
+                    "ing_id": $("#ing_name").val(),
+                    "method_name": "getCalories",
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.status = "success") {
+                        $('#ing_calories').val(response['data']);
+                    }
+                }
+            })
+        });
+    });
+
+    function remove_item(id) {
+        $.ajax({
+            type: 'POST',
+            url: 'ingridient_data.php',
+            dataType: 'json',
+            data: {
+                "id": id,
+                "method_name": "remove_item",
+            },
+            success: function(response) {
+                console.log(response);
+                if (response.status = "success") {
+                    location.reload();
+                }
+            }
+        });
+    }
+</script>
