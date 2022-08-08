@@ -45,32 +45,87 @@
                   <input class="form-control" type="text" id="email" placeholder="Enter email address" disabled>
                 </div>
               </div><!-- col-4 -->
+            </div><!-- row -->
+              <div class="form-layout-footer" style="text-align: center">
+                <button class="btn btn-info btn-dark justify-content-center" id="update" >UPDATE</button>
+              </div>
+              </div>
+          
+
+              <div class="form-layout form-layout-1" style="border: none;">
+                <form method='post' action='update_user_password.php' name = "password_form">
+              <div class="row mg-b-25">
+            <div class="col-lg-4">            
+                <div class="form-group">
+                  <label class="form-control-label">Old Password: </label>
+                  <input class="form-control" type="text" id="old_password" name ="old_password" placeholder="Enter Old Password">
+                </div>
+              </div><!-- col-4 -->
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label">New Password: </label>
+                  <input class="form-control" type="text" id="new_password" name ="new_password" placeholder="Enter New Password">
+                </div>
+              </div><!-- col-4 -->
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label">Confirm Password: </label>
+                  <input class="form-control" type="text" id="confirm_password" name="confirm_password" placeholder="Re-enter New Password">
+                </div>
+              </div><!-- col-4 -->
              <!-- col-8 -->
               <!-- col-4 -->
-            </div><!-- row -->
+            <!-- row -->
 
-            <div class="form-layout-footer">
-              <button class="btn btn-info btn-dark" id="update" style='width:100px;margin:0 50%;position:relative;left:-50px;'>UPDATE</button>
-            </div><!-- form-layout-footer -->
-          </div>
-          <div class="form-layout-footer">
-              <button class="btn btn-info btn-dark" style='margin:0 50%;position:relative;left: -95px;px;'><a href="ingredients.php"; style="color: white";>Add New Ingredient</a></button>
-            </div>
-          </div>
+          </div><!-- row -->
+            <div class="form-layout-footer" style="text-align: center">
+                <button class="btn btn-info btn-dark justify-content-center" id="update_password" >UPDATE PASSWORD</button>
+              </div>
+        </div>
+      </div><!-- form-layout-footer -->
+        
       
 </body>
 
 
 <script type = "text/javascript">
-    $(function() {
+    // $(function() {
+// $('#update_password').click(function() {
+
+// var old_password = $('#old_password').val();
+// var new_password = $('#new_password').val();
+// var confirm_password = $('#confirm_password').val();
+
+// if (old_password == ""|| new_password == "" || confirm_password == ""){
+//   alert('Password Fields cannot be empty');
+// }
+// else if (old_password == new_password){
+//   alert ('Password should be unique');
+// }
+// elseif (confirm_password != new_password){
+//   alert ('password does not match');
+// }
+
+
+
+
+// })
+
+      // update button
         $('#update').click(function() {
+          var first_name = $('#fname').val()
+          var last_name = $('#lname').val()
+          if(first_name == "" || last_name == ""){
+            alert('Firstname & Lastname cannot be empty')
+          }
+          else{
             $.ajax({
                 type: 'post',
                 url: 'update_user_data.php',
                 dataType: 'json',
                 data: {
-                    'first_name' : $('#fname').val(),
-                    'last_name' : $('#lname').val(),
+                    'first_name' : first_name,
+                    'last_name' : last_name,
                 },
                 success: function (response) {
                     console.log(response);
@@ -80,9 +135,10 @@
                         alert("Something went wrong!!!");
                     }
                 }
-            }); 
+            });
+          } 
         });
-    });
+    // });
 
     function load_data(){
         $.ajax({
