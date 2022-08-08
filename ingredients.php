@@ -58,10 +58,9 @@ else{
               
               <div class="form-layout-footer mg-t-30">
                 <button class="btn btn-info btn-dark active" id="upload" name="upload">Add Ingredient</button>
-              </div><!-- form-layout-footer -->
-            <!-- form-layout -->
+              </div>
             </div>
-          </div><!-- col-6 -->
+          </div>
 </form   >
           <div class="col-xl-6 mg-t-20 mg-xl-t-0" style="background-color: #fff;">
             <div class="form-layout form-layout-4">
@@ -71,7 +70,7 @@ else{
               <div class="row">
                 <label class="col-sm-4 form-control-label"> Utensil Name:<span class="tx-danger">*</span></label>
                 <div class="col-sm-8 mg-t-10 mg-sm-t-0">
-                <input type="text" id="utensil" name="utensil" required oninvalid="this.setCustomValidity('Enter Utensil Name')" oninput="this.setCustomValidity('')">
+                <input type="text" class="form-control" id="utensil" name="utensil" required oninvalid="this.setCustomValidity('Enter Utensil Name')" oninput="this.setCustomValidity('')">
 </div>
                 <div class="form-layout-footer mg-t-30" style="padding-left: 35%;">
                 <button class="btn btn-info btn-dark active" id="add_utensil" name="add_utensil">Add Utensil</button>
