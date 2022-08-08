@@ -3,69 +3,8 @@
  * Version: 2.0.0
  * Author: ThemePixels (@themepixels)
  * URL: http://themepixels.me/bracket
- *
- * TABLE OF CONTENTS
- *
- * 1.   GOOGLE FONTS IMPORT
- *
- * 2.   BOOTSTRAP FRAMEWORK
- *
- * 3.   BOOTSTRAP OVERRIDES
- *        3.1   Alerts
- *        3.2   Buttons
- *        3.3   Cards
- *        3.4   Custom
- *        3.5   Custom Forms
- *        3.6   Forms
- *        3.7   Form Layouts
- *        3.8   Modal
- *        3.9   Navigation
- *        3.10  Pagination
- *        3.11  Popover
- *        3.12  Progress
- *        3.13  Tooltip
- *        3.14  Tables
- *        3.15  Widgets
- *
- * 4.   CUSTOM VENDOR STYLES
- *        4.1   Chartist
- *        4.2   Codemirror
- *        4.3   Datatables
- *        4.4   Flot
- *        4.5   IonRangeSlider
- *        4.6   jQuery Steps
- *        4.7   jQuery UI
- *        4.8   JQVMap
- *        4.9   Leaflet
- *        4.10  Medium Editor
- *        4.11  Morris
- *        4.12  Parsley
- *        4.13  Perfect Scrollbar
- *        4.14  Rickshaw
- *        4.15  Select2
- *        4.16  Sparkline
- *        4.17  Spectrum
- *        4.18  Summernote
- *        4.19  Switch Buttons
- *        4.20  TagsInput
- *        4.21  Toggles
- *
- * 5.   BRACKET PLUS CORE STYLES
- *
- * 6.   UTILITIES / HELPER CLASSES
- *        6.1   Background
- *        6.2   Border
- *        6.3   Height
- *        6.4   Hover
- *        6.5   Margin
- *        6.6   Misc
- *        6.7   Padding
- *        6.8   Position
- *        6.9   Typography
- *        6.10  Width
- *
-**/
-/* ------------------------------------------------------ */
+
+ /* ------------------------------------------------------ */
 /* ############### 1. GOOGLE FONTS IMPORT ############### */
 /* ------------------------------------------------------ */
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
@@ -61143,5 +61082,27 @@ a.hover-white-8:focus {
 *{
     margin: 0;
     padding: 0;
+  }
+
+input[type="file"] {
+    position: absolute;
+    z-index: -1;
+    top: 10px;
+    left: 8px;
+    font-size: 17px;
+    color: #b8b8b8;
+  }
+  .button-wrap {
+    position: relative;
+  }
+  .button {
+    display: inline-block;
+    padding: 12px 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
   }
   
