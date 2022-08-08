@@ -81,6 +81,10 @@
             <div class="form-layout-footer" style="text-align: center">
                 <button class="btn btn-info btn-dark justify-content-center" id="update_password" >UPDATE PASSWORD</button>
               </div>
+
+              <div class="form-layout-footer mg-t-100" style="text-align: center">
+                <button class="btn btn-info btn-dark justify-content-center" id="update_password" ><a href="add_custom_recipe.php" style="color: white;">ADD CUSTOM RECIPE</a></button>
+              </div>
         </div>
       </div><!-- form-layout-footer -->
         
