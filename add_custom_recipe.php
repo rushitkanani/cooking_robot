@@ -33,14 +33,13 @@ require_once("connection.php");
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label">Person: <span class="tx-danger">*</span></label>
-                            <input class="form-control" type="number" name="person" id="person" placeholder="Enter number of person">
+                            <input class="form-control" type="number" name="person" id="person" placeholder="1" disabled>
                         </div>
                     </div>
                     <div class="col-lg-3 mg-t-40 mg-lg-t-0">
-                        <label class="custom-file">
-                            <input type="file" class="custom-file-input">
-                            <span class="custom-file-control custom-file-control-inverse"></span>
-                        </label>
+                        <label class="button">Upload File</label>
+                            <input type="file">
+                            <!-- <span class="custom-file-control custom-file-control-inverse"></span> -->
                     </div><!-- col-4 -->
                     <!-- col-4 -->
                 </div><!-- row -->
@@ -100,7 +99,7 @@ require_once("connection.php");
                 <button id="add_ingriendent" name="add_ingriendent" class="btn btn-primary btn-dark">Add Ingrident</button>
             </div>
         </div>
-
+        
 
     </div>
 
@@ -191,7 +190,9 @@ require_once("connection.php");
             </div>
         </div>
     </div>
-
+    <div style="text-align:center" class="mg-t-20">
+                <button  name="submit" class="btn btn-primary btn-dark" type="reset">Submit Recipe</button>
+            </div>
 </form>
 
 <script>
