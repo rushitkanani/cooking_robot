@@ -20,19 +20,21 @@ require_once("connection.php");
                 <div class="row mg-b-10">
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <label class="form-control-label">Recipe Name: <span class="tx-danger">*</span></label>
+                            <label class="form-control-label">Recipe Name: <span class="tx-danger">* </span><i class="fa fa-cutlery" aria-hidden="true"></i>
+</label>
                             <input class="form-control" type="text" name="receipe_name" id="receipe_name" placeholder="Enter Recipe name">
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <label class="form-control-label">Cooking Time: <span class="tx-danger">*</span></label>
+                            <label class="form-control-label">Cooking Time: <span class="tx-danger">* </span><i class="fa fa-clock-o fa-1.5x"></i></label>
                             <input class="form-control" type="number" name="cooking_time" id="cooking_time" placeholder="Enter Cooking Time">
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <label class="form-control-label">Person: <span class="tx-danger">*</span></label>
+                            <label class="form-control-label">Person: <span class="tx-danger">* </span><i class="fa fa-male" aria-hidden="true"></i>
+</label>
                             <input class="form-control" type="number" name="person" id="person" placeholder="1" disabled>
                         </div>
                     </div>
@@ -81,7 +83,7 @@ require_once("connection.php");
             </table>
             <div id="add_ing_block" style="visibility: hidden">
                 <form id="ing_form" action="#">
-                    <select class="select2" type="text" id="ing_name" placeholder="name">
+                    <select class="select2 float-left" type="text" id="ing_name" placeholder="name">
                         <option>Choose one</option>
                         <?php
                         $r = mysqli_query($conn, "SELECT `ing_id`,`ingredient_name` FROM `ingredient_table`");
@@ -90,8 +92,8 @@ require_once("connection.php");
                         }
                         ?>
                     </select>
-                    <input type="text" id="ing_calories" placeholder="calories" readonly>
-                    <input type="text" id="portion" name="portion" placeholder="Portion">
+                    <input type="text" class="wd-150 form-control float-left" id="portion" name="portion" placeholder="Portion">
+                    <input type="text" class="wd-150 form-control float-left mg-l-10" id="ing_calories" placeholder="calories" readonly>
                     <button class="btn-dark btn" value="add" id="add_ing">ADD</button>
                 </form>
             </div>
@@ -181,7 +183,7 @@ require_once("connection.php");
             </table>
             <div id="add_steps_block" style="visibility: hidden">
                 <form id="step_form" action="#">
-                    <input type="text" id="rec_step" name="rec_step" placeholder="add steps">
+                    <input type="text" class="wd-150 form-control float-left" id="rec_step" name="rec_step" placeholder="add steps">
                     <button class="btn-dark btn" value="add" id="add_step_db">ADD</button>
                 </form>
             </div>
