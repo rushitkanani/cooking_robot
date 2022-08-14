@@ -54,41 +54,51 @@
 
               <div class="form-layout form-layout-1" style="border: none;">
                 <form method='post' action='update_user_password.php' name = "password_form">
-              <div class="row mg-b-25">
-            <div class="col-lg-4">            
-                <div class="form-group">
+                  <div class="row mg-b-25">
+                  <div class="col-lg-4">            
+                  <div class="form-group">
                   <label class="form-control-label">Old Password: </label>
                   <input class="form-control" type="text" id="old_password" name ="old_password" placeholder="Enter Old Password">
-                </div>
-              </div><!-- col-4 -->
-              <div class="col-lg-4">
-                <div class="form-group">
+                  </div>
+                  </div><!-- col-4 -->
+                  <div class="col-lg-4">
+                  <div class="form-group">
                   <label class="form-control-label">New Password: </label>
                   <input class="form-control" type="text" id="new_password" name ="new_password" placeholder="Enter New Password">
-                </div>
-              </div><!-- col-4 -->
-              <div class="col-lg-4">
-                <div class="form-group">
+                  </div>
+                  </div><!-- col-4 -->
+                  <div class="col-lg-4">
+                  <div class="form-group">
                   <label class="form-control-label">Confirm Password: </label>
                   <input class="form-control" type="text" id="confirm_password" name="confirm_password" placeholder="Re-enter New Password">
+                  </div>
+                  </div><!-- col-4 -->
+                  <!-- col-8 -->
+                  <!-- col-4 -->
+                 <!-- row -->
+
+                  </div><!-- row -->
+                  <div class="form-layout-footer" style="text-align: center">
+                 <button class="btn btn-info btn-dark justify-content-center" id="update_password" >UPDATE PASSWORD</button>
+                  </div>
+
+                 <!-- <div class="form-layout-footer mg-t-100" style="text-align: center">
+                 <button class="btn btn-info btn-dark justify-content-center"  ><a href="add_custom_recipe.php" style="color: white;">ADD CUSTOM RECIPE</a></button>
+                  </div> -->
+                  </div>
+                  </div><!-- form-layout-footer -->
+                </form>
+              </div><!-- row -->
+              <form method="GET" action= 'createlist.php'>
+                <div class="form-layout-footer" style="text-align: center">
+                <button class="btn btn-info btn-dark justify-content-center" >Create List</button>
                 </div>
-              </div><!-- col-4 -->
-             <!-- col-8 -->
-              <!-- col-4 -->
-            <!-- row -->
 
-          </div><!-- row -->
-            <div class="form-layout-footer" style="text-align: center">
-                <button class="btn btn-info btn-dark justify-content-center" id="update_password" >UPDATE PASSWORD</button>
-              </div>
-
-              <div class="form-layout-footer mg-t-100" style="text-align: center">
-                <button class="btn btn-info btn-dark justify-content-center" id="update_password" ><a href="add_custom_recipe.php" style="color: white;">ADD CUSTOM RECIPE</a></button>
-              </div>
-        </div>
-      </div><!-- form-layout-footer -->
-        
-      
+                <!-- <div class="form-layout-footer mg-t-100" style="text-align: center">
+                <button class="btn btn-info btn-dark justify-content-center"  ><a href="add_custom_recipe.php" style="color: white;">ADD CUSTOM RECIPE</a></button>
+                </div> -->
+                </div>
+              </form>
 </body>
 
 
