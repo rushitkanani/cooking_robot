@@ -40,6 +40,51 @@ if ($_POST['method_name'] == 'getCalories') {
     } else {
         $response['status'] = "error";
     }
+} else if($_POST['method_name'] == 'add_utensil'){
+    $ute_id = $_POST['utensil_id'];
+    $user_id = $_POST['user_id'];
+
+    $sql1 = "SELECT * FROM `tmp_receipe_utensil` WHERE `utensil_id` = '$ute_id' AND `user_id`= '$user_id'";
+    $q1 = mysqli_query($conn, $sql1);
+    if(mysqli_num_rows($q1) > 0){
+        $response['status'] = 'Failed';
+    }else{
+        $q = mysqli_query($conn, "INSERT INTO `tmp_receipe_utensil`(`utensil_id`, `user_id`) VALUES ('$ute_id','$user_id')");
+        if($q){
+            $response['status'] = "success";
+        }else{
+            $response['status'] = "error";
+        }
+    }
+    
+} else if ($_POST['method_name'] == 'remove_utensil') {
+    $id = $_POST['id'];
+    $q = "DELETE FROM `tmp_receipe_utensil` WHERE id='$id'";
+    $r = mysqli_query($conn, $q);
+    if ($r) {
+        $response['status'] = "success";
+    } else {
+        $response['status'] = "error";
+    }
+
+} else if($_POST['method_name'] == 'add_steps'){
+    $step = $_POST['rec_step'];
+    $id = $_POST['user_id'];
+    $q = mysqli_query($conn, "INSERT INTO `tmp_receipe_steps`( `user_id`, `Description`) VALUES ('$id','$step')");
+    if($q){
+        $response['status'] = "success";
+    }else{
+        $response['status'] = "error";
+    }
+} else if ($_POST['method_name'] == 'remove_step') {
+    $id = $_POST['id'];
+    $q = "DELETE FROM `tmp_receipe_steps` WHERE id='$id'";
+    $r = mysqli_query($conn, $q);
+    if ($r) {
+        $response['status'] = "success";
+    } else {
+        $response['status'] = "error";
+    }
 }
 
 echo json_encode($response);
