@@ -22,8 +22,8 @@ else{
 <div class="row mg-t-80">
           <div class="col-xl-6" style="background-color: #fff;">
             <div class="form-layout form-layout-4" >
-              <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Add Ingredient to Recepie</h6>
-              <p class="mg-b-30 tx-gray-600">Ingredient details of a custom receipe.</p>
+              <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Add Ingredient Here</h6>
+              <p class="mg-b-30 tx-gray-600">Ingredient details of a custom recipe.</p>
               <form method="post" action="add_ingredients.php" enctype="multipart/form-data" id="myform">
               <div class="row">
                 <label class="col-sm-4 form-control-label">Ingredient Name: <span class="tx-danger">*</span></label>
