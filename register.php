@@ -14,18 +14,20 @@ session_start();
 ?>
 <body>
 
-    <header>
-        <img  class = "logo"
-        src="images/logo.png">
-        <h2>Cooking Robot</h2>
-    </header>
+<div class="pd-10 mg-t-20 bg-dark rounded">
+<div class="ht-65 bd pd-x-20 d-flex align-items-center justify-content-between">
+  <h4 class="mg-b-0 tx-bold tx-spacing--2 tx-inverse tx-poppins mg-r-20"><span style="color: white; font-size: 35px;">Cooking</span><span style="color: rgb(6, 193, 103); font-size: 35px;"> Robot</span></h4>
+        <ul class="nav nav-white-800 flex-column flex-md-row justify-content-end" role="tablist">
+        </ul>
+      </div>
+      </div>
     
     
     <form action = "user_signup.php"  method = "post" id = "signup form">
         
     
-        <div class="d-flex align-items-center justify-content-center bg-gray-300 ht-700 pd-x-20 pd-xs-x-0">
-            <div class="card wd-1000 shadow-base">
+        <div class="d-flex align-items-center justify-content-center ht-700 pd-x-20 pd-xs-x-0">
+            <div class="card wd-1000">
                 <div class="card-body pd-x-20 pd-xs-40">
                     <h5 class="tx-xs-24 tx-normal tx-gray-900 mg-b-35">Create a New Account:</h5>
                     <div class="row">
@@ -59,10 +61,14 @@ session_start();
                     </div>
                   </div>
                   <span id='message'></span>
-                  <div class="form-layout-footer mg-t-30">
-                    <button class="btn btn-info" id = "signUp" >Sign Up</button>
-                    <button class="btn btn-secondary" ><a href='homepage.php' style="color:white;">Cancel</a></button>
-                  </div>
+                  <div class="row mg-t-30">
+                
+                  <div class="form-layout-footer justify-content-center">
+                  <button class="btn btn-info btn-dark" id = "signUp">Sign Up</button>
+                    <button class="btn btn-info btn-dark disabled"><a href="homepage.php" style="color: white;">Cancel</a></button>
+                  </div><!-- form-layout-footer -->
+                </div><!-- col-8 -->
+              </div>
               </div>
             </div>
           </div>
