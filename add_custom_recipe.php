@@ -5,12 +5,13 @@
 <script src="wizard/select2.min.js"></script>
 <link rel="stylesheet" href="wizard/select2.min.css">
 <link rel="stylesheet" href="wizard/css/bracket.css">
-<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="wizard/css/font-awesome/css/font-awesome.css">
 
 <?php
 require_once("connection.php");
+require_once("header.php");
 ?>
-<form method="post" id="form" action="#">
+<form method="post" id="form" enctype="multipart/form-data">
     <div class="br-pagebody">
         <div class="br-section-wrapper">
             <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">Custom Recipe</h6>
@@ -20,42 +21,46 @@ require_once("connection.php");
                 <div class="row mg-b-10">
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <label class="form-control-label">Recipe Name: <span class="tx-danger">* </span><i class="fa fa-cutlery" aria-hidden="true"></i>
-</label>
-                            <input class="form-control" type="text" name="receipe_name" id="receipe_name" placeholder="Enter Recipe name">
+                            <label class="form-control-label">Recipe Name: <span class="tx-danger">*</span></label>
+                            <input class="form-control" type="text" name="receipe_name" id="receipe_name" placeholder="Enter Recipe name" required>
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <label class="form-control-label">Cooking Time: <span class="tx-danger">* </span><i class="fa fa-clock-o fa-1.5x"></i></label>
-                            <input class="form-control" type="number" name="cooking_time" id="cooking_time" placeholder="Enter Cooking Time">
+                            <label class="form-control-label">Cooking Time: <span class="tx-danger">*</span></label>
+                            <input class="form-control" type="number" name="cooking_time" id="cooking_time" placeholder="Enter Cooking Time" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Cooking Temperature (°C): <span class="tx-danger">*</span></label>
+                            <input class="form-control" type="number" name="cooking_temp" id="cooking_temp" placeholder="Enter Cooking Temperature" required>
                         </div>
                     </div><!-- col-4 -->
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <label class="form-control-label">Person: <span class="tx-danger">* </span><i class="fa fa-male" aria-hidden="true"></i>
-</label>
-                            <input class="form-control" type="number" name="person" id="person" placeholder="1" disabled>
+                            <label class="form-control-label">Person: <span class="tx-danger">*</span></label>
+                            <input class="form-control" type="number" name="person" id="person" value="1" disabled>
                         </div>
                     </div>
                     <div class="col-lg-3 mg-t-40 mg-lg-t-0">
                         <label class="button">Upload File</label>
-                            <input type="file">
-                            <!-- <span class="custom-file-control custom-file-control-inverse"></span> -->
-                    </div><!-- col-4 -->
-                    <!-- col-4 -->
-                </div><!-- row -->
+                        <input type="file" id="rec_photo" name="rec_photo" accept="image/*">
+                    </div>
+                </div>
 
             </div>
         </div>
+    </div>
 
+    <div class="br-pagebody">
         <div class="br-section-wrapper mg-t-20">
-            <table class="table table-bordered table-colored table-dark mg-t-0">
+            <table class="table table-bordered table-colored table-dark mg-t-0" id="ing_block">
                 <thead class="mg-t-0">
 
                     <?php
                     $q = "SELECT id,ingredient_table.ingredient_name,ingredient_table.ingredient_calories, tmp_receipe_ingrident.portion FROM `tmp_receipe_ingrident` 
-                        JOIN `ingredient_table` ON ingredient_table.ing_id=tmp_receipe_ingrident.ing_id WHERE tmp_receipe_ingrident.user_id=1;";
+                        JOIN `ingredient_table` ON ingredient_table.ing_id=tmp_receipe_ingrident.ing_id WHERE tmp_receipe_ingrident.user_id= " . $_SESSION['userId'];
                     $r = mysqli_query($conn, $q);
                     if (mysqli_num_rows($r) > 0) {
                         echo '<tr><td> Sr. No.</td>
@@ -63,9 +68,12 @@ require_once("connection.php");
                                 <td>Ingriendent_Calories</td>
                                 <td>Portion</td>
                                 <td>Action</td></tr>';
+                        echo '</thead>';
                     }
                     $index = 1;
+                    $calory = 0;
                     while ($row = mysqli_fetch_assoc($r)) {
+
                         echo '<tbody>';
                         echo '<tr>';
 
@@ -73,41 +81,46 @@ require_once("connection.php");
                         echo '<td>' . $row['ingredient_name'] . '</td>';
                         echo '<td  class="wd-20p">' . $row['ingredient_calories'] . '</td>';
                         echo '<td  class="wd-20p">' . $row['portion'] . '</td>';
+                        $calory = $calory + ($row['ingredient_calories'] * $row['portion']);
                         echo '<td  class="wd-5p"><button type="button" onclick="remove_item(' . $row['id'] . ')" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>';
                         echo '</tr>';
                         echo '</tbody>';
                     }
+
+                    if (mysqli_num_rows($r) > 0) {
+                        echo '<tfoot>';
+                        echo '<tr><td></td><td></td>';
+                        echo '<td name="total_calories">' . $calory . '</td>';
+                        echo '<td></td><td></td></tr>';
+                        echo '</tfoot>';
+                    }
                     ?>
 
-                </thead>
+
             </table>
             <div id="add_ing_block" style="visibility: hidden">
-                <form id="ing_form" action="#">
-                    <select class="select2 float-left" type="text" id="ing_name" placeholder="name">
-                        <option>Choose one</option>
-                        <?php
-                        $r = mysqli_query($conn, "SELECT `ing_id`,`ingredient_name` FROM `ingredient_table`");
-                        while ($row = mysqli_fetch_assoc($r)) {
-                            echo '<option value="' . $row['ing_id'] . '">' . $row['ingredient_name'] . '</option>';
-                        }
-                        ?>
-                    </select>
-                    <input type="text" class="wd-150 form-control float-left" id="portion" name="portion" placeholder="Portion">
-                    <input type="text" class="wd-150 form-control float-left mg-l-10" id="ing_calories" placeholder="calories" readonly>
-                    <button class="btn-dark btn" value="add" id="add_ing">ADD</button>
-                </form>
+                <select class="select2" type="text" id="ing_name" placeholder="name">
+                    <option>Choose one</option>
+                    <?php
+                    $r = mysqli_query($conn, "SELECT `ing_id`,`ingredient_name` FROM `ingredient_table`");
+                    while ($row = mysqli_fetch_assoc($r)) {
+                        echo '<option value="' . $row['ing_id'] . '">' . $row['ingredient_name'] . '</option>';
+                    }
+                    ?>
+                </select>
+                <input type="text" id="ing_calories" placeholder="calories" readonly>
+                <input type="text" id="portion" name="portion" placeholder="Portion">
+                <p class="btn-dark btn" value="add" id="add_ing">ADD</p>
             </div>
             <div style="text-align:center">
-                <button id="add_ingriendent" name="add_ingriendent" class="btn btn-primary btn-dark">Add Ingrident</button>
+                <p id="add_ingriendent" name="add_ingriendent" class="btn btn-primary btn-dark">Add Ingrident</p>
             </div>
         </div>
-        
-
     </div>
 
     <div class="br-pagebody">
         <div class="br-section-wrapper mg-t-20">
-            <table class="table table-bordered table-colored table-dark mg-t-0">
+            <table class="table table-bordered table-colored table-dark mg-t-0" id="utensil_block">
                 <thead class="mg-t-0">
                     <tr>
                         <?php
@@ -122,7 +135,6 @@ require_once("connection.php");
                         while ($row = mysqli_fetch_assoc($r)) {
                             echo '<tbody>';
                             echo '<tr>';
-
                             echo '<td  class="wd-5p">' . $index++ . '</td>';
                             echo '<td>' . $row['utensils_name'] . '</td>';
                             echo '<td  class="wd-5p"><button type="button" onclick="remove_utensil(' . $row['id'] . ')" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>';
@@ -134,28 +146,27 @@ require_once("connection.php");
                 </thead>
             </table>
             <div id="add_utensil_block" style="visibility: hidden">
-                <form id="utensil_form" action="#">
-                    <select class="select2" type="text" id="utensil_name" placeholder="Utensil name">
-                        <option>Choose one</option>
-                        <?php
-                        $r = mysqli_query($conn, "SELECT `utensils_id`,`utensils_name` FROM `utensils`");
-                        while ($row = mysqli_fetch_assoc($r)) {
-                            echo '<option value="' . $row['utensils_id'] . '">' . $row['utensils_name'] . '</option>';
-                        }
-                        ?>
-                    </select>
-                    <button class="btn-dark btn" value="add" id="add_utensil_db">ADD</button>
-                </form>
+
+                <select class="select2" type="text" id="utensil_name" placeholder="Utensil name">
+                    <option>Choose one</option>
+                    <?php
+                    $r = mysqli_query($conn, "SELECT `utensils_id`,`utensils_name` FROM `utensils`");
+                    while ($row = mysqli_fetch_assoc($r)) {
+                        echo '<option value="' . $row['utensils_id'] . '">' . $row['utensils_name'] . '</option>';
+                    }
+                    ?>
+                </select>
+                <p class="btn-dark btn" value="add" id="add_utensil_db">ADD</p>
             </div>
             <div style="text-align:center;">
-                <button id="add_utensil" name="add_utensil" class="btn btn-primary btn-dark">Add Utensil</button>
+                <p id="add_utensil" name="add_utensil" class="btn btn-primary btn-dark">Add Utensil</p>
             </div>
         </div>
     </div>
 
     <div class="br-pagebody">
         <div class="br-section-wrapper mg-t-20">
-            <table class="table table-bordered table-colored table-dark mg-t-0">
+            <table class="table table-bordered table-colored table-dark mg-t-0" id="step_block">
                 <thead class="mg-t-0">
                     <tr>
                         <?php
@@ -182,28 +193,29 @@ require_once("connection.php");
                 </thead>
             </table>
             <div id="add_steps_block" style="visibility: hidden">
-                <form id="step_form" action="#">
-                    <input type="text" class="wd-150 form-control float-left" id="rec_step" name="rec_step" placeholder="add steps">
-                    <button class="btn-dark btn" value="add" id="add_step_db">ADD</button>
-                </form>
+                <input type="text" id="rec_step" name="rec_step" placeholder="add steps">
+                <p class="btn-dark btn" value="add" id="add_step_db">ADD</p>
             </div>
             <div style="text-align:center">
-                <button id="add_steps" name="add_step" class="btn btn-primary btn-dark">Add Step</button>
+                <p id="add_steps" name="add_step" class="btn btn-primary btn-dark">Add Step</p>
             </div>
         </div>
     </div>
-    <div style="text-align:center" class="mg-t-20">
-                <button  name="submit" class="btn btn-primary btn-dark" type="reset">Submit Recipe</button>
-            </div>
+
+    <div class=br-pagebody>
+        <div style=" text-align:center" class="mg-t-20">
+            <input type="submit" formaction="add_recipe_db.php" name="submit" class="btn btn-primary btn-dark" value="Submit Recipe">
+        </div>
+    </div>
+
+
+
+
 </form>
 
 <script>
     $(function() {
         'use strict';
-
-        $('#form').submit(function(ev) {
-            ev.preventDefault();
-        });
 
         $('#ing_form').submit(function(ev) {
             ev.preventDefault();
@@ -214,6 +226,18 @@ require_once("connection.php");
         });
 
         $('#step_form').submit(function(ev) {
+            ev.preventDefault();
+        });
+
+        $('#add_ingriendent').submit(function(ev) {
+            ev.preventDefault();
+        });
+
+        $('#add_utensil').submit(function(ev) {
+            ev.preventDefault();
+        });
+
+        $('#add_steps').submit(function(ev) {
             ev.preventDefault();
         });
 
@@ -252,7 +276,8 @@ require_once("connection.php");
                 success: function(response) {
                     console.log(response);
                     if (response['status'] == "success") {
-                        location.reload();
+                        // location.reload();
+                        $("#ing_block").load(window.location.href + " #ing_block");
                     } else if (response['status'] == "Failed") {
                         console.log(response);
                         alert('Ingredient already exists');
@@ -293,7 +318,7 @@ require_once("connection.php");
                 success: function(response) {
                     console.log(response);
                     if (response['status'] == "success") {
-                        location.reload();
+                        $("#utensil_block").load(location.href + " #utensil_block");
                     } else if (response['status'] == "Failed") {
                         alert('Utensil already exists');
                     }
@@ -301,27 +326,28 @@ require_once("connection.php");
             });
         });
 
-        $('#add_step_db').on('click', function(){
-            if($('#rec_step').val().trim() == ''){
+        $('#add_step_db').on('click', function() {
+            if ($('#rec_step').val().trim() == '') {
                 alert("Please enter the steps.");
             } else {
                 $.ajax({
-                type: 'POST',
-                url: 'ingridient_data.php',
-                dataType: 'json',
-                data: {
-                    "rec_step": $("#rec_step").val(),
-                    "user_id": 1,
-                    "method_name": "add_steps",
-                },
-                success: function(response) {
-                    console.log(response);
-                    if (response['status'] == "success") {
-                        location.reload();
-                    } 
-                }
-            });
-            } 
+                    type: 'POST',
+                    url: 'ingridient_data.php',
+                    dataType: 'json',
+                    data: {
+                        "rec_step": $("#rec_step").val(),
+                        "user_id": 1,
+                        "method_name": "add_steps",
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response['status'] == "success") {
+                            $('#rec_step').val(" ");
+                            $("#step_block").load(location.href + " #step_block");
+                        }
+                    }
+                });
+            }
         });
     });
 
@@ -337,7 +363,7 @@ require_once("connection.php");
             success: function(response) {
                 console.log(response);
                 if (response.status = "success") {
-                    location.reload();
+                    $("#ing_block").load(window.location.href + " #ing_block");
                 }
             }
         });
@@ -355,7 +381,7 @@ require_once("connection.php");
             success: function(response) {
                 console.log(response);
                 if (response.status = "success") {
-                    location.reload();
+                    $("#utensil_block").load(location.href + " #utensil_block");
                 }
             }
         });
@@ -373,7 +399,7 @@ require_once("connection.php");
             success: function(response) {
                 console.log(response);
                 if (response.status = "success") {
-                    location.reload();
+                    $("#step_block").load(location.href + " #step_block");
                 }
             }
         });
